@@ -1,14 +1,13 @@
 import './App.css'
+import Form from './Form'
 
 function App() {
   
 
   return (
-    <div className="App">
-      
-      <p>
-        Click on the Vite and React logos to learn more
-      </p>
+    <div>
+      <Form />
+  
     </div>
   )
 }

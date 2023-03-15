@@ -1,12 +1,12 @@
 import './App.css'
-import SignUp from './SignUp'
+import Api from './learnApi/Api'
 
 function App() {
   
 
   return (
     <div>
-      <SignUp />
+      <Api />
   
     </div>
   )

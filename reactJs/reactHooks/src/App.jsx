@@ -1,84 +1,25 @@
-// import React, { useState } from 'react' --------------------> useState Basic
-// import './App.css'
-
-// function App() {
-//   const [count, setCount] = useState(0)
-//   function add(){
-    
-//       setCount(prev => (
-//         prev+1
-//       )
-//     )
-//   }
-
-//   function dou(){
-    
-//     setCount(prev => (
-//       prev*2
-//     )
-//   )
-// }
-
-//   return (
-//     <div>
-//       <h1>{count}</h1>
-//       <button onClick={add}>Increment!</button>
-//       <button onClick={dou}>Double!</button>
-//     </div>
-//   )
-// }
-
-// export default App
-
-
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
+import randomcolor from "randomcolor"
 
 function App() {
-    const [inputData, setInputData] = useState({firstName: "", lastName: ""})
-    const [contactsData, setContactsData] = useState([])
-    function handleChange(event) {
-        const {name, value} = event.target;
-        
-        setInputData(prev => {
-          return{
-            ...prev,
-            [name] : value
-
-          }
-        }
-          
-        )
-    }
-
-
+    const [count, setCount] = useState(0)
+    const [color, setColor] = useState("")
     
-    function handleSubmit(event) {
-      event.preventDefault()
-        setContactsData(prev => [...prev,inputData])
-    }
-
-    const contacts = contactsData.map(data => <h1>{data.firstName} {data.lastName}</h1>)
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCount(prevCount => prevCount + 1)
+        }, 2000)
+        return () => clearInterval(intervalId)
+    }, [])
+    
+    useEffect(() => {
+        setColor(randomcolor())
+    }, [count])
     
     return (
-      <>
-            <form onSubmit={handleSubmit}>
-                <input 
-                    placeholder="First Name"
-                    name="firstName" 
-                    value={inputData.firstName}
-                    onChange={handleChange}
-                />
-                <input 
-                    placeholder="Last Name"
-                    name="lastName" 
-                    value={inputData.lastName}
-                    onChange={handleChange}
-                />
-                <br />
-                <button>Add contact</button>
-            </form>
-            {contacts}
-        </>
+        <div>
+            <h1 style={{color: color}}>{count}</h1>
+        </div>
     )
 }
 

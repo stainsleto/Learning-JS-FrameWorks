@@ -1,24 +1,10 @@
-import React, {useState, useEffect} from "react"
-import randomcolor from "randomcolor"
+import React from "react"
+
 
 function App() {
-    const [count, setCount] = useState(0)
-    const [color, setColor] = useState("")
-    
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setCount(prevCount => prevCount + 1)
-        }, 2000)
-        return () => clearInterval(intervalId)
-    }, [])
-    
-    useEffect(() => {
-        setColor(randomcolor())
-    }, [count])
-    
     return (
         <div>
-            <h1 style={{color: color}}>{count}</h1>
+            <h1 > Each Branch will cover each hook concepts, switch between branch to know more about a particular hook</h1>
         </div>
     )
 }

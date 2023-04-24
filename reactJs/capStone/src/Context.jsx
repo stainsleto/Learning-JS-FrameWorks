@@ -33,12 +33,20 @@ const Context = React.createContext()
 
     }
 
+    function removeFromCart(id){
+        setCartItems(prev => prev.filter(item => item.id !== id))
+    }
+
     console.log(cartItems)
+
+    function emptyCart(){
+        setCartItems([])
+    }
     
 
 
     return (
-        <Context.Provider value={{allPhotos, toggleFavorite, addToCart, cartItems}}>
+        <Context.Provider value={{allPhotos, toggleFavorite, addToCart, cartItems, removeFromCart, emptyCart}}>
             {children}
         </Context.Provider>
     )

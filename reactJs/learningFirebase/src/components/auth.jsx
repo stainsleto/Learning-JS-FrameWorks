@@ -36,16 +36,30 @@ export const Auth = () =>{
 
     return(
         <div className='signup'>
+            
             <input 
-            placeholder='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} />
+                placeholder='email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} 
+            />
+
             <input placeholder='password'  
-            value={password}
-            onChange={(e) => setPassowrd(e.target.value)} />
-            <button onClick={signIn}>Signin</button>
-            <button onClick={signInWithGoogle}>SignIn with Google </button>
-            <button onClick={logout}>Logout</button>
+                value={password}
+                onChange={(e) => setPassowrd(e.target.value)} 
+            />
+
+            <button onClick={signIn}>
+                Signin
+            </button>
+
+            <button onClick={signInWithGoogle}>
+                SignIn with Google 
+            </button>
+
+            <button onClick={logout}>
+                Logout
+            </button>
+
         </div>
     )
 }

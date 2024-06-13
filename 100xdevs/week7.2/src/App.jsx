@@ -1,11 +1,8 @@
-import { useContext} from "react"
-import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil"
 import './App.css'
 import { countAtom, evenSelector } from "./store/atoms/count"
+import { RecoilRoot, useRecoilValue, useSetRecoilState } from "recoil"
 
 function App() {
-
-  
   return (
     <>
       <RecoilRoot>
@@ -17,16 +14,12 @@ function App() {
 }
 
 const Count = ()=> {
-
   return(
       <>
           <CountRenderer />
-
           <Buttons />
-
       </>
   )
-
 }
 
 function CountRenderer() {
@@ -49,11 +42,8 @@ function Buttons() {
 function EvenCountRenderer(){
   const oddOrEven = useRecoilValue(evenSelector)
   return(
-    <h1>It is {oddOrEven ? 'odd' : 'even'}</h1>
-      
+    <h1>It is {oddOrEven ? 'odd' : 'even'}</h1>  
   )
 }
-
-
 
 export default App

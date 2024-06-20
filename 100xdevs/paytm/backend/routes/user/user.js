@@ -2,7 +2,7 @@ const express = require("express");
 const zod = require("zod");
 const { User, Account } = require("../../db");
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET } = require("../../config");
+const  {JWT_SECRET}  = require('../../config');
 const { authMiddleware } = require("./middleware");
 const router = express.Router();
 
@@ -59,7 +59,9 @@ router.post("/signup", async (req,res) => {
 
     res.json({
         message : "User created",
-        token : token
+        token : token,
+        username : dbUser.firstName
+
     })
 })
 
@@ -84,7 +86,8 @@ router.post("/signin", async(req,res) => {
             userId : dbUser._id
         },JWT_SECRET);
         return res.json({
-            token : token
+            token : token,
+            username : dbUser.firstName
         })
     }
 
@@ -111,29 +114,52 @@ router.put("/", authMiddleware, async(req,res) => {
 
 })
 
-router.get('/bulk',authMiddleware, async(req,res) => {
+// router.get('/bulk',authMiddleware, async(req,res) => {
+//     const filter = req.query.filter || "";
+//     const users = await User.find({
+//         $or:[
+//             {
+//                 firstName : {"$regex" : filter},
+//                 lastName : {"$regex" : filter}
+//             }
+//         ]
+//     })
+
+//     res.json({
+//         user : users.map (user => ({
+//             username : user.username,
+//             firstName : user.firstName,
+//             lastName : user.lastName,
+//             _id : user._id
+//         }))
+//     })
+
+
+// })
+
+router.get("/bulk", async (req, res) => {
     const filter = req.query.filter || "";
+
     const users = await User.find({
-        $or:[
-            {
-                firstName : {$regex : filter}
-            },
-            {
-                lastName : {$regex : filter}
+        $or: [{
+            firstName: {
+                "$regex": filter
             }
-        ]
+        }, {
+            lastName: {
+                "$regex": filter
+            }
+        }]
     })
 
     res.json({
-        user : users.map (user => ({
-            username : user.username,
-            firstName : user.firstName,
-            lastName : user.lastName,
-            _id : user._id
+        user: users.map(user => ({
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            _id: user._id
         }))
     })
-
-
 })
 
 

@@ -43,3 +43,52 @@ isLegal2({
     lastName: "leto",
     age: 23
 });
+// can't have multiple types in interface but can have in type
+function greet3(id) {
+    console.log("Hello" + id);
+}
+function greet4(id) {
+    console.log("Hello" + id);
+}
+greet3(1);
+greet3('1');
+greet4(1);
+greet4('1');
+const t = {
+    name: "Stains",
+    startDate: new Date(),
+    defartment: "I.T"
+};
+function maxValue(arr) {
+    let max = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+}
+maxValue([1, 2, 3, 4]);
+//enums --> mentioning constants in human readable form
+var Direction;
+(function (Direction) {
+    Direction[Direction["Up"] = 0] = "Up";
+    Direction[Direction["Down"] = 1] = "Down";
+    Direction[Direction["Left"] = 2] = "Left";
+    Direction[Direction["Right"] = 3] = "Right";
+})(Direction || (Direction = {}));
+var Direction1;
+(function (Direction1) {
+    Direction1["Up"] = "up";
+    Direction1["Down"] = "down";
+    Direction1["Left"] = "left";
+    Direction1["Right"] = "right";
+})(Direction1 || (Direction1 = {}));
+function doSomething(keyPressed) {
+    if (keyPressed === Direction.Up) {
+        console.log("Up");
+    }
+}
+doSomething(Direction.Up);
+doSomething(Direction.Right);
+doSomething(Direction.Down);
+//generics  --> language independent concept exist in c++ as well

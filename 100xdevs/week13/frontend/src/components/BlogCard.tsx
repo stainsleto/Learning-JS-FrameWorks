@@ -6,29 +6,33 @@ interface BlogCardProps {
 }
 export const BlogCard = ({authorName, title, content, publishedDate} :  BlogCardProps ) => {
     return(
-        <main>
+        <main className="container p-4 border-b border-slate-200">
             <div className="flex items-center gap-2">
-                <Avatar name={'Leto'} /> <div className="font-extralight">{authorName}</div>  . {publishedDate} 
+                <Avatar name={'Leto'} /> <div className="font-extralight text-sm">{authorName}</div> 
+
+                <div className="text-[0.5rem] justify-end"> &#9679; </div> 
+
+                <div className="font-thin text-slate-500 text-sm">
+                    {publishedDate} 
+                </div>
             </div>
-            <div>
+            <div className="text-xl font-semibold">
                 {title}
             </div>
-            <div>
+            <div className="text-base font-thin">
                 {content.slice(0,100) + "..."}
             </div>
-            <div>
-                {`${Math.ceil(content.length /100)} minutes`}
+            <div className="text-slate-500 text-sm font-thin pt-4">
+                {`${Math.ceil(content.length /100)} minutes read`}
             </div>
-            <div className="bg-slate-200 h-1 w-full">
-
-            </div>
+            
         </main>
     )
 }
 
 function Avatar({name} : {name:string}) {
     return (
-        <div className="relative inline-flex items-center justify-center w-4 h-4 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+        <div className="relative inline-flex items-center justify-center w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
     <span className="text-sm text-gray-600 dark:text-gray-300">{name[0]}</span>
 </div>
     )
